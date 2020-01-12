@@ -14,10 +14,6 @@ logging.config.dictConfig(log_config)
 
 # start logging
 lg = logging.getLogger(__name__)
-
-# load app config
-lg.debug('loading app config')
-
 logging.debug(__appname__ + ' ' + __version__)
 
 # start

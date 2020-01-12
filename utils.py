@@ -28,7 +28,9 @@ def new_item_cli():
 
 
 def get_user_agent():
-    Template(config['requests']['useragent']).substitute(appname=__appname__, version=__version__)
+    return Template(config['requests']['useragent']).substitute(appname=__appname__, version=__version__)
 
 
+# load app config
+#lg.debug('loading app config') # TODO: global debug (lg)
 config = load_config_dict(__configfile__)

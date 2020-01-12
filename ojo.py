@@ -12,6 +12,7 @@ from .telegram import Telegram
 from . import Base, __appname__, __version__
 from .models import FetchEntry, Item
 from .utils import relative_path, config, get_user_agent
+from .rss import build_feed
 
 
 class Ojo:
@@ -20,7 +21,7 @@ class Ojo:
         self.lg = logging.getLogger(__name__)
 
         self.session = requests.Session()
-        self.session.headers = {'User-Agent': get_user_agent()}
+        self.session.headers.update({'User-Agent': get_user_agent()})
         self.interval = config['fetch_interval']
 
         db_engine = create_engine('sqlite:///' + relative_path(config['dbfile']))
@@ -76,23 +77,32 @@ class Ojo:
                 res = res.text
 
             print(res)
+            item_changed = False
 
             if len(item.entries) > 0:
                 most_recent = item.entries[0]
 
                 # detect changes
                 if res != most_recent.value:
+                    item_changed = True
                     self.lg.info('detected change')
                     if item.notify:
                         self.lg.info('sending notification')
-                        text = f"There has been a change for item '{item.name}', see {item.url}"
+                        text = f"'{item.name}' has changed, see {item.url}"
                         self.telegram.notify(text)
-                else:
-                    self.lg.info('no change')
 
-            entry = FetchEntry(item=item, value=res)
+                else:
+                    self.lg.debug('no change')
+            else:
+                self.lg.debug('first check')
+
+            entry = FetchEntry(item=item, value=res, change=item_changed)
             self.db.add(entry)
             self.db.commit()
+
+            if item_changed:
+                self.lg.info('rebuilding rss feed')
+                build_feed(self.db)
 
     def run(self):
         self.lg.info(f'running with {self.interval}s interval')

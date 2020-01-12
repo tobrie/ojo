@@ -14,6 +14,7 @@ class FetchEntry(Base):
     time = Column(DateTime, default=datetime.datetime.utcnow)
     item_id = Column(Integer, ForeignKey('items.id'))
     value = Column(String)
+    change = Column(Boolean)
 
     item = relationship('Item', back_populates='entries')
 
@@ -25,6 +26,7 @@ class Item(Base):
     __tablename__ = 'items'
 
     id = Column(Integer, primary_key=True)
+    time_added = Column(DateTime, default=datetime.datetime.utcnow)
     name = Column(String, nullable=False)
     url = Column(String, nullable=False)
     xpath = Column(String)

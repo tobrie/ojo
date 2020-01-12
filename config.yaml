@@ -1,5 +1,7 @@
 dbfile: 'ojo.db'
-fetch_interval: 300
+rss:
+  feedfile: 'feed.xml'
+fetch_interval: 60
 default_interval: 3600 # not used yet
 requests:
   #useragent: 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:45.0) Gecko/20100101 Firefox/45.0'
