@@ -16,7 +16,7 @@ handlers:
     class: logging.FileHandler
     level: DEBUG
     formatter: basic
-    filename: 'whatshit.log'
+    filename: 'ojo.log'
 #loggers:
     #  lxml:
     #level: WARNING
