@@ -1,4 +1,6 @@
 # ojo
+![logo](https://raw.githubusercontent.com/tobrie/ojo/master/logo.png)
+
 Ojo watches websites and notifies you when they change. Either via [Telegram](https://telegram.org/) or via an rss feed served by ojo (not yet implemented). It is also possible to use [XPaths](https://en.wikipedia.org/wiki/XPath) to only watch a subelement.
 
 Example: To be notified when the [xkcd webcomic](https://xkcd.com)'s title changes, you can use the combination of `https://xkcd.com` (the url) and `//div[@id='ctitle']` (an XPath to the title).
