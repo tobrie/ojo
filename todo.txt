@@ -1,0 +1,3 @@
+[X] persistent storage & value comparison
+[ ] RSS feed
+[ ] write tests
