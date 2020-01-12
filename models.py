@@ -33,7 +33,6 @@ class Item(Base):
     # TODO: make use of interval
     interval = Column(Integer, default=config['default_interval'])
 
-    # TODO relationship?
     entries = relationship('FetchEntry', order_by=FetchEntry.time.desc(), back_populates='item')
 
     def __repr__(self):

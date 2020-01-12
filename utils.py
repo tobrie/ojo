@@ -1,5 +1,6 @@
 import os.path
 import yaml
+from string import Template
 
 from . import __appname__, __version__, __configfile__
 

@@ -1,7 +1,5 @@
-import csv
 import logging
 import time
-from string import Template
 from io import StringIO
 from urllib.parse import urlparse
 
@@ -13,7 +11,7 @@ from sqlalchemy import create_engine
 from .telegram import Telegram
 from . import Base, __appname__, __version__
 from .models import FetchEntry, Item
-from .utils import relative_path, config
+from .utils import relative_path, config, get_user_agent
 
 
 class Ojo:
@@ -25,7 +23,6 @@ class Ojo:
         self.session.headers = {'User-Agent': get_user_agent()}
         self.interval = config['fetch_interval']
 
-        # TODO: location of sqlite file
         db_engine = create_engine('sqlite:///' + relative_path(config['dbfile']))
         Base.metadata.create_all(db_engine)
         DBSession = sessionmaker(bind=db_engine)
