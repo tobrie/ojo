@@ -6,3 +6,10 @@ style() {
 todo() {
   git grep -r 'TODO' | less
 }
+
+setup() {
+  rm -rf ojo/venv
+  virtualenv -p python3 ojo/venv
+  source ojo/venv/bin/activate
+  pip install -r ojo/requirements.txt
+}
