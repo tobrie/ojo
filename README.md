@@ -14,10 +14,10 @@ Install the required python packages
 pip install -r ojo/requirements.txt
 ```
 
-Configure telegram (Optional)
+Configure telegram (optional)
 ```bash
-export TG_TOKEN="12345678" # <- bot token
-export TG_CHATID="" # <- chat_id from the Telegram API
+export TG_TOKEN="<your-bot-token>" # <- bot token
+export TG_CHATID="<your-chat-id>" # <- chat_id from the Telegram API
 ```
 
 Run it
@@ -39,4 +39,4 @@ XPaths can can be obtained with most modern browsers as follows
 2. Select the element whose XPath you need
 3. In the element inspector right click on the highlighted element and select "Copy" > "XPath"
 
-The resulting XPath is quite messy. Most XPaths can however be simplified and thus become more robust to changes in the page structure.
+The resulting XPath will be quite messy. Most XPaths can however be simplified and thus become more robust to changes in the page structure.
